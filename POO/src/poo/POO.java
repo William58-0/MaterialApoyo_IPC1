@@ -4,6 +4,9 @@
  */
 package poo;
 
+import SegundoPaquete.Auto;
+import SegundoPaquete.Propietario;
+
 /**
  *
  * @author William
@@ -14,33 +17,47 @@ public class POO {
      * @param args the command line arguments
      */
     public static void main(String[] args) {
+
+        // --------------------------------------------------------- VEHICULO
+        Vehiculo vehiculo1 = new Vehiculo("default",
+                "publico", "private",
+                "protected");
+        System.out.println(vehiculo1.atributoDefault);
+        System.out.println(vehiculo1.atributoPublico);
+        // private no accesible desde otra clase
+        System.out.println(vehiculo1.atributoPrivate);
+        System.out.println(vehiculo1.atributoProtected);
+
+        // --------------------------------------------------------- AUTO
+        Auto auto1 = new Auto("default",
+                "publico", "private",
+                "protected");
         
-        Persona persona1 = new Persona("Luis", "Gonzalez", 15, "casa");
-        Persona persona2 = new Persona("Mario", "Hernandez", 20, "apartamento");
+        // default no accesible desde otro paquete
+        System.out.println(auto1.atributoDefault);
+        System.out.println(auto1.atributoPublico);
+        // private no accesible desde otra clase
+        System.out.println(auto1.atributoPrivate);
+        System.out.println(auto1.atributoProtected);
         
-        persona1.comer();
+        // --------------------------------------------------------- PROPIETARIO
+        Propietario prop = new Propietario("Juan", vehiculo1);
         
-        persona2.dormir();
+        // vehiculo tiene atributos no publicos
+        System.out.println(prop.vehiculo);
         
-        System.out.println(persona1.getNombreCompleto());
+        // se deben utilizar metodos para obtener esos valores
+        System.out.println(prop.getVehiculo().atributoPublico);
         
         
-        /*
-        persona1.mostrarDatos("hola", "hola");
-        
-        persona1.mostrarDatos("hola", "hola",16);
-        */
-        
-        Auto autoobj = new Auto("rojo", "nombreCarro", 2001);
-        System.out.println(autoobj.anio);
     }
-    
-    public void metodo(){
+
+    public void metodo() {
         System.out.println("sin parametros");
     }
-    
-    public void metodo(int num1, int num2){
+
+    public void metodo(int num1, int num2) {
         System.out.println("con parametros");
     }
-    
+
 }
