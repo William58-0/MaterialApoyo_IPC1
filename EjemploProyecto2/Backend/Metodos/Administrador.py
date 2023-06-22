@@ -83,7 +83,24 @@ def GetComentarios(datos, comentarios):
         
     return {'data': filtrados, 'status': 200}
 
+def EliminarUsuario(datos, usuarios):
+    # https://www.geeksforgeeks.org/python-removing-dictionary-from-list-of-dictionaries/
+    nombreUsuario = datos['nombreUsuario']
+    nuevoUsuarios = []
+    status = 400
 
+    for i in range(len(usuarios)):
+        user = usuarios[i]
+
+        # si la pelicula coincide con la que se quiere eliminar
+        if(user['nombre_usuario'] == nombreUsuario):
+            status = 200
+            # salta una iteración
+            continue
+        
+        nuevoUsuarios.append(user)
+        
+    return {'data': nuevoUsuarios, 'status': status}
 
  
 

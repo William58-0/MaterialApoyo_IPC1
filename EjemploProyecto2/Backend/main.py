@@ -32,9 +32,9 @@ def rutaInicial():
     return("Si funciona")
 
 # ------------------------------------------------------------- INICIAL
-@app.route('/registrarCliente', methods=['POST'])
-def registrarCliente():
-    respuesta = RegistrarUsuario(request.json, usuarios, 2)
+@app.route('/registrarUsuario', methods=['POST'])
+def registrarUsuario():
+    respuesta = RegistrarUsuario(request.json, usuarios)
     return respuesta
 
 @app.route('/recuperarContrasenia', methods=['POST'])
@@ -100,6 +100,18 @@ def eliminarPelicula():
 def getComentarios():
     respuesta = GetComentarios(request.json, comentarios)
     return respuesta
+
+@app.route('/getUsuarios', methods=['GET'])
+def getUsuarios():
+    respuesta = {'data': usuarios, 'status': 200}
+    return respuesta
+
+@app.route('/eliminarUsuario', methods=['POST'])
+def eliminarUsuario():
+    global usuarios
+    respuesta = EliminarUsuario(request.json, usuarios)
+    usuarios = respuesta['data']
+    return {'data':'OK', 'status': respuesta['status']}
 
 if __name__ == "__main__":
     app.run(host="0.0.0.0", port=3000, debug=True)

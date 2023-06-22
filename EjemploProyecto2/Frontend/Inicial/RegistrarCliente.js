@@ -9,10 +9,11 @@ function RegistrarCliente() {
         'apellido': apellido,
         'nombre_usuario': nombre_usuario,
         'contrasenia': contrasenia,
+        'tipo': 2 // tipo cliente
     }
     console.log(objeto)
 
-    fetch('http://localhost:3000/registrarCliente', {
+    fetch('http://localhost:3000/registrarUsuario', {
         method: 'POST',
         body: JSON.stringify(objeto),
         headers: {

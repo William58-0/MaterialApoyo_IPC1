@@ -27,6 +27,7 @@ function getPelicula() {
             document.getElementById("VerPelicula-anio").value = pelicula.anio
             document.getElementById("VerPelicula-duracion").value = pelicula.duracion
             document.getElementById("VerPelicula-link").value = pelicula.link
+            document.getElementById("video").src = pelicula.link
         })
 }
 

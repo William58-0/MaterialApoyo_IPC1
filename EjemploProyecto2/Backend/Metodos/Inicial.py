@@ -1,10 +1,11 @@
 from Clases.Usuario import Usuario
 
-def RegistrarUsuario(datos, usuarios, tipo):
+def RegistrarUsuario(datos, usuarios):
     nombre = datos['nombre']
     apellido = datos['apellido']
     nombre_usuario = datos['nombre_usuario']
     contrasenia = datos['contrasenia']
+    tipo = int(datos['tipo'])
     
     for usuario in usuarios:
         # si ya existe ese nombre de usuario
