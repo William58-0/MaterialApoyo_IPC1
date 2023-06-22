@@ -51,7 +51,6 @@ function ModificarPerfil() {
                 alert("Ocurrió un error")
             } else {
                 alert("Usuario actualizado!")
-                location.href = "ModificarPerfil.html"
             }
         })
 }

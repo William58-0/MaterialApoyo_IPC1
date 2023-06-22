@@ -6,3 +6,11 @@ class Usuario:
         self.contrasenia = contrasenia
         self.tipo = tipo
 
+    def toDict(self):
+        return {
+            'nombre':self.nombre,
+            'apellido':self.apellido,
+            'nombre_usuario': self.nombre_usuario,
+            'contrasenia': self.contrasenia,
+            'tipo': self.tipo
+        }

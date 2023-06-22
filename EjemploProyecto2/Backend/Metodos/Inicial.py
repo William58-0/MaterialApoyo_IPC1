@@ -1,5 +1,3 @@
-import json
-
 from Clases.Usuario import Usuario
 
 def RegistrarUsuario(datos, usuarios, tipo):
@@ -10,11 +8,12 @@ def RegistrarUsuario(datos, usuarios, tipo):
     
     for usuario in usuarios:
         # si ya existe ese nombre de usuario
-        if(usuario.nombre_usuario == nombre_usuario):
+        if(usuario['nombre_usuario'] == nombre_usuario):
             return {'data':'', 'status': 400}
         
     # si no existe el usuario agregarlo al listado
-    usuarios.append(Usuario(nombre, apellido, nombre_usuario, contrasenia, tipo))
+    nuevoUsuario = Usuario(nombre, apellido, nombre_usuario, contrasenia, tipo)
+    usuarios.append(nuevoUsuario.toDict())
     return {'data':'OK', 'status': 200}
 
 def RecuperarContrasenia(datos, usuarios):
@@ -22,8 +21,8 @@ def RecuperarContrasenia(datos, usuarios):
     
     for usuario in usuarios:
         # buscar el usuario para retornar la contraseña
-        if(usuario.nombre_usuario == nombre_usuario):
-            return {'data':usuario.contrasenia, 'status': 200}
+        if(usuario['nombre_usuario'] == nombre_usuario):
+            return {'data':usuario['contrasenia'], 'status': 200}
         
     # si no existe el usuario retornar un error
     return {'data':'F', 'status': 400}
@@ -37,21 +36,14 @@ def IniciarSesion(datos, usuarios):
     usuarioEnSesion = -1
     
     for i in range(len(usuarios)):
-        usuario = usuarios[i]
-        if(usuario.nombre_usuario == nombre_usuario and usuario.contrasenia == contrasenia):
-            ##return json.dumps(usuario.__dict__)
-            usuario = {
-                'nombre': usuario.nombre,
-                'apellido': usuario.apellido,
-                'nombre_usuario': usuario.nombre_usuario,
-                'contrasenia': usuario.contrasenia,
-                'tipo': usuario.tipo
-            }
+        user = usuarios[i]
+        if(user['nombre_usuario'] == nombre_usuario and user['contrasenia'] == contrasenia):
+            usuario = user
             status = 200
             usuarioEnSesion = i
             break
 
-    return {'data':usuario, 'status': status,  'usuarioEnSesion': usuarioEnSesion}   
+    return {'data':usuario, 'status': status, 'usuarioEnSesion': usuarioEnSesion}   
     
         
 

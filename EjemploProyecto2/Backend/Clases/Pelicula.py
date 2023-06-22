@@ -7,7 +7,7 @@ class Pelicula:
         self.duracion = duracion
         self.link = link
         
-    def toJSON(self):
+    def toDict(self):
         return {
             'nombre':self.nombre,
             'genero':self.genero,
